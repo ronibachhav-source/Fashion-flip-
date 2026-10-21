@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fashion Flip | Shop Your Style</title>
+<style>
+:root{--red:#ff2638;--black:#101010;--muted:#687080;--line:#e8e8ec}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--black);background:#fff}
+a{color:inherit;text-decoration:none}
+.topbar{height:36px;background:#101010;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 4%;font-size:12px}
+.top-links{display:flex;gap:18px;align-items:center}
+.main-header{min-height:82px;display:flex;align-items:center;gap:34px;padding:16px 4%;border-bottom:1px solid #f0f0f0}
+.brand{display:flex;align-items:center;gap:10px;font-size:29px;font-weight:800;letter-spacing:-1.2px;white-space:nowrap}
+.brand-mark{width:36px;height:36px;background:var(--red);color:white;display:grid;place-items:center;font-size:28px;font-weight:900;font-style:italic;clip-path:polygon(24% 0,100% 0,76% 100%,0 100%)}
+.brand span em{font-style:normal;color:var(--red)}
+.search{flex:1;max-width:650px;margin:auto;position:relative}
+.search input{width:100%;border:1px solid #e4e6eb;border-radius:28px;background:#f6f7f9;padding:15px 20px 15px 46px;font-size:14px;outline:none}
+.search input:focus{border-color:#ff8790;background:#fff}
+.search-icon{position:absolute;left:17px;top:13px;font-size:19px}
+.header-actions{display:flex;gap:18px;align-items:center;font-size:13px;white-space:nowrap}
+.action{text-align:center;display:grid;gap:5px}
+.action b{font-size:19px;font-weight:500}
+.cart-count{display:inline-grid;place-items:center;background:var(--red);color:#fff;border-radius:50%;font-size:10px;width:17px;height:17px;vertical-align:middle}
+.nav{display:flex;align-items:center;gap:clamp(16px,2.8vw,40px);padding:0 4%;height:55px;border-bottom:1px solid #eee;overflow-x:auto;white-space:nowrap}
+.nav a{font-size:13px;font-weight:600}
+.nav a:hover,.top-links a:hover{color:var(--red)}
+.nav .all{display:flex;gap:10px;align-items:center}
+.hamburger{font-size:22px}
+.hero{min-height:490px;height:min(65vw,650px);max-height:650px;background:radial-gradient(ellipse at 50% 58%,#2b0005 0%,#100002 28%,#050505 62%,#000 100%);position:relative;overflow:hidden;display:grid;place-items:center;color:#fff;isolation:isolate}
+.hero:before,.hero:after{content:"";position:absolute;width:min(48vw,590px);height:min(20vw,250px);border:2px solid transparent;border-top-color:#ff182e;border-bottom-color:#6c0b13;border-radius:50%;transform:rotate(-22deg);filter:drop-shadow(0 0 9px #ff182e);animation:orbit 8s linear infinite;z-index:-1}
+.hero:after{width:min(38vw,470px);height:min(15vw,185px);transform:rotate(27deg);animation-direction:reverse;opacity:.7}
+.hero-glow{position:absolute;width:220px;height:25px;background:#ff1028;filter:blur(30px);bottom:20%;opacity:.8}
+.big-f{font-size:clamp(150px,25vw,310px);font-weight:950;font-style:italic;line-height:1;color:#fff;text-shadow:0 0 3px white,0 0 20px #ff1028,0 0 55px #e0001c;transform:skew(-8deg);animation:appear 1.4s ease-out both}
+.big-f:after{content:"";display:block}
+.hero-copy{position:absolute;bottom:9%;text-align:center;color:#fff}
+.hero-copy h1{margin:0;font-size:clamp(22px,3vw,36px);letter-spacing:5px;text-transform:uppercase}
+.hero-copy p{margin:10px 0 0;color:#c8c8c8;font-size:12px;letter-spacing:3px}
+.features{display:grid;grid-template-columns:repeat(4,1fr);padding:30px 4%;border-bottom:1px solid var(--line)}
+.feature{display:flex;align-items:center;justify-content:center;gap:14px;padding:8px 12px;border-right:1px solid var(--line)}
+.feature:last-child{border:0}
+.feature-icon{font-size:27px}
+.feature strong{display:block;font-size:14px;margin-bottom:5px}
+.feature small{color:#8b93a1;font-size:12px}
+.empty-space{min-height:125px;display:grid;place-items:center;color:#9ba1ac;text-align:center;padding:30px}
+.empty-space span{font-size:12px;letter-spacing:2px}
+footer{background:#101010;color:#d8d8d8;padding:30px 4%;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px}
+footer strong{color:#fff;font-size:16px}
+footer em{font-style:normal;color:var(--red)}
+@keyframes orbit{from{rotate:0deg}to{rotate:360deg}}
+@keyframes appear{0%{opacity:0;transform:scale(.65) skew(-8deg);filter:blur(8px)}100%{opacity:1;transform:scale(1) skew(-8deg);filter:blur(0)}}
+@media(max-width:900px){.main-header{gap:16px;flex-wrap:wrap}.brand{font-size:25px}.search{order:3;flex-basis:100%;max-width:none}.header-actions{margin-left:auto}.features{grid-template-columns:repeat(2,1fr);gap:12px}.feature:nth-child(2){border-right:0}.hero{height:65vw;min-height:380px}}
+@media(max-width:560px){.topbar{padding:0 4%;font-size:10px}.top-links{gap:10px}.main-header{padding:14px 4%;gap:10px}.brand{font-size:23px}.brand-mark{width:30px;height:30px;font-size:23px}.header-actions{gap:12px;font-size:11px}.action b{font-size:17px}.nav{height:48px;gap:22px}.hero{min-height:400px;height:78vh;max-height:580px}.hero:before{width:82vw;height:34vw}.hero:after{width:68vw;height:26vw}.big-f{font-size:60vw}.hero-copy h1{letter-spacing:3px}.features{padding:20px 3%;gap:8px}.feature{justify-content:flex-start;padding:10px 5px;gap:9px}.feature-icon{font-size:23px}.feature strong{font-size:12px}.feature small{font-size:10px}}
+</style>
+</head>
+<body>
+
+<style>
+#ffIntro{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;flex-direction:column;overflow:hidden;background:radial-gradient(ellipse at center,#260006 0%,#080808 45%,#000 100%);color:#fff;cursor:pointer;transition:opacity .8s ease,visibility .8s ease}
+#ffIntro::before,#ffIntro::after{content:"";position:absolute;width:min(72vw,760px);height:min(28vw,300px);border:2px solid transparent;border-top-color:#ff2638;border-bottom-color:#8b0715;border-radius:50%;transform:rotate(-24deg);filter:drop-shadow(0 0 10px #ff2638);animation:ffOrbit 7s linear infinite;pointer-events:none}
+#ffIntro::after{width:min(58vw,600px);height:min(22vw,230px);transform:rotate(25deg);animation-direction:reverse;opacity:.7}
+#ffIntro .ff-intro-letter{font-size:clamp(190px,43vw,430px);font-weight:950;font-style:italic;line-height:.9;color:#fff;transform:skew(-9deg);text-shadow:0 0 8px #fff,0 0 26px #ff2638,0 0 70px #e40020;animation:ffPop 1.2s ease both;z-index:1}
+#ffIntro .ff-intro-name{z-index:1;font-size:clamp(24px,5vw,48px);font-weight:800;letter-spacing:clamp(3px,1vw,9px);text-transform:uppercase;margin-top:24px}
+#ffIntro .ff-intro-name span{color:#ff2638}
+#ffIntro .ff-intro-tag{z-index:1;margin-top:12px;font-size:12px;letter-spacing:4px;color:#c9c9c9}
+#ffIntro .ff-enter{z-index:1;margin-top:35px;border:1px solid #ff2638;background:#ff2638;color:white;padding:14px 28px;border-radius:3px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:background .2s,transform .2s}
+#ffIntro .ff-enter:hover{background:#d90e23;transform:translateY(-2px)}
+#ffIntro .ff-skip{position:absolute;bottom:24px;color:#aaa;font-size:11px;letter-spacing:2px}
+#ffIntro.ff-hidden{opacity:0;visibility:hidden;pointer-events:none}
+body.ff-intro-open{overflow:hidden}
+@keyframes ffOrbit{from{rotate:0deg}to{rotate:360deg}}
+@keyframes ffPop{0%{opacity:0;transform:scale(.55) skew(-9deg);filter:blur(12px)}100%{opacity:1;transform:scale(1) skew(-9deg);filter:blur(0)}}
+@media(max-width:600px){#ffIntro::before{width:95vw;height:38vw}#ffIntro::after{width:78vw;height:31vw}#ffIntro .ff-intro-letter{font-size:65vw}#ffIntro .ff-intro-tag{letter-spacing:2px}}
+@media(prefers-reduced-motion:reduce){#ffIntro::before,#ffIntro::after,#ffIntro .ff-intro-letter{animation:none}}
+</style>
+<div id="ffIntro" role="button" tabindex="0" aria-label="Enter Fashion Flip website">
+  <div class="ff-intro-letter" aria-hidden="true">F</div>
+  <div class="ff-intro-name">Fashion <span>Flip</span></div>
+  <div class="ff-intro-tag">YOUR STYLE. YOUR STORY.</div>
+  <button class="ff-enter" type="button" onclick="enterFashionFlip(event)">ENTER WEBSITE&nbsp; →</button>
+  <div class="ff-skip">TAP ANYWHERE TO CONTINUE</div>
+</div>
+<script>
+(function(){
+  document.body.classList.add("ff-intro-open");
+  window.enterFashionFlip = function(event){
+    if(event) event.stopPropagation();
+    const intro = document.getElementById("ffIntro");
+    if(!intro || intro.classList.contains("ff-hidden")) return;
+    intro.classList.add("ff-hidden");
+    document.body.classList.remove("ff-intro-open");
+    setTimeout(function(){ if(intro && intro.parentNode) intro.parentNode.removeChild(intro); }, 850);
+  };
+  const intro = document.getElementById("ffIntro");
+  intro.addEventListener("click", window.enterFashionFlip);
+  intro.addEventListener("keydown", function(e){
+    if(e.key === "Enter" || e.key === " "){ e.preventDefault(); window.enterFashionFlip(e); }
+  });
+})();
+</script>
+
+<div class="topbar">
+  <div>🚚 &nbsp; Free shipping on orders above ₹999</div>
+  <div class="top-links"><a href="#login" onclick="openAuth('login');return false">Login</a><span>|</span><a href="#register" onclick="openAuth('register');return false">Register</a></div>
+</div>
+<header class="main-header">
+  <a class="brand" href="#" aria-label="Fashion Flip home"><span class="brand-mark">F</span><span>Fashion <em>Flip</em></span></a>
+  <form class="search" onsubmit="event.preventDefault();showMessage('Search is ready to connect when you add products.');">
+    <span class="search-icon">⌕</span><input aria-label="Search" placeholder="Search for styles, categories and more...">
+  </form>
+  <div class="header-actions">
+    <a class="action" href="#wishlist" onclick="showMessage('Your wishlist will appear here.')"><b>♡</b><span>Wishlist</span></a>
+    <a class="action" href="#cart" onclick="showMessage('Your shopping bag is empty.')"><b>♧ <span class="cart-count">0</span></b><span>My Cart</span></a>
+  </div>
+</header>
+<nav class="nav" aria-label="Main navigation">
+  <a class="all" href="#categories"><span class="hamburger">☰</span> All Categories</a>
+  <a href="#men">Men</a><a href="#women">Women</a><a href="#kids">Kids</a><a href="#footwear">Footwear</a><a href="#bags">Bags &amp; Luggage</a><a href="#accessories">Accessories</a><a href="#home-living">Home &amp; Living</a><a href="#beauty">Beauty</a><a href="#brands">Brands</a>
+</nav>
+<main>
+  <section class="hero" aria-label="Fashion Flip brand intro">
+    <div class="hero-glow"></div>
+    <div class="big-f" aria-label="F">F</div>
+    <div class="hero-copy"><h1>Fashion Flip</h1><p>YOUR STYLE. YOUR STORY.</p></div>
+  </section>
+  <section class="features" aria-label="Shopping benefits">
+    <div class="feature"><span class="feature-icon">♧</span><div><strong>Free Shipping</strong><small>On orders above ₹999</small></div></div>
+    <div class="feature"><span class="feature-icon">♢</span><div><strong>Safe &amp; Secure Payments</strong><small>100% secure payment</small></div></div>
+    <div class="feature"><span class="feature-icon">↶</span><div><strong>Easy Returns</strong><small>Hassle-free returns</small></div></div>
+    <div class="feature"><span class="feature-icon">♧</span><div><strong>Customer Support</strong><small>We're here to help</small></div></div>
+  </section>
+  <section class="empty-space" id="categories"><span>YOUR SHOPPING SPACE STARTS HERE</span></section>
+</main>
+<footer><div><strong>Fashion <em>Flip</em></strong><p>Find your style. Make it yours.</p></div><div>About Us &nbsp; | &nbsp; Contact &nbsp; | &nbsp; Privacy Policy</div><div>© 2026 Fashion Flip</div></footer>
+<script>
+function showMessage(message){alert(message)}
+</script>
+
+<div class="auth-overlay" id="authOverlay" role="dialog" aria-modal="true" aria-labelledby="authTitle" style="display:none;position:fixed;inset:0;background:#000a;z-index:99;align-items:center;justify-content:center;padding:18px">
+  <div style="width:100%;max-width:410px;background:white;border-radius:16px;padding:28px;position:relative;color:#111">
+    <button type="button" onclick="closeAuth()" aria-label="Close" style="position:absolute;right:15px;top:10px;border:0;background:none;font-size:28px;cursor:pointer">×</button>
+    <h2 style="margin:0 0 8px">Fashion <span style="color:#ff2638">Flip</span></h2>
+    <h3 id="authTitle">Login to your account</h3>
+    <p id="authNote" style="color:#666;font-size:13px">Use your phone number and password.</p>
+    <form id="authForm">
+      <label for="authPhone" style="display:block;margin:14px 0 6px">Phone number</label>
+      <input id="authPhone" type="tel" inputmode="numeric" autocomplete="tel" pattern="[6-9][0-9]{9}" maxlength="10" placeholder="10-digit Indian mobile number" required style="width:100%;padding:12px;border:1px solid #ccc;border-radius:8px">
+      <label for="authPassword" style="display:block;margin:14px 0 6px">Password</label>
+      <input id="authPassword" type="password" autocomplete="current-password" minlength="10" maxlength="72" placeholder="10–72 characters" required style="width:100%;padding:12px;border:1px solid #ccc;border-radius:8px">
+      <button id="authSubmit" type="submit" style="width:100%;margin-top:18px;padding:13px;background:#ff2638;color:white;border:0;border-radius:8px;font-weight:bold;cursor:pointer">Login</button>
+      <p id="authMessage" role="status" style="font-size:13px;line-height:1.4"></p>
+    </form>
+    <p style="font-size:13px;text-align:center"><span id="authSwitchText">New to Fashion Flip?</span> <button id="authSwitch" type="button" onclick="switchAuth()" style="color:#e21e30;border:0;background:none;font-weight:bold;cursor:pointer">Create account</button></p>
+  </div>
+</div>
+<style>.auth-overlay.open{display:flex!important}</style>
+<script>
+let authMode = "login";
+const authOverlay = document.getElementById("authOverlay");
+function openAuth(mode) {
+  authMode = mode;
+  document.getElementById("authTitle").textContent = mode === "register" ? "Create your account" : "Login to your account";
+  document.getElementById("authNote").textContent = mode === "register" ? "Use a phone number and create a strong password (10–72 characters)." : "Enter your phone number and password.";
+  document.getElementById("authSubmit").textContent = mode === "register" ? "Create Account" : "Login";
+  document.getElementById("authPassword").autocomplete = mode === "register" ? "new-password" : "current-password";
+  document.getElementById("authSwitchText").textContent = mode === "register" ? "Already have an account?" : "New to Fashion Flip?";
+  document.getElementById("authSwitch").textContent = mode === "register" ? "Login" : "Create account";
+  document.getElementById("authMessage").textContent = "";
+  authOverlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeAuth() { authOverlay.classList.remove("open"); document.body.style.overflow = ""; }
+function switchAuth() { openAuth(authMode === "login" ? "register" : "login"); }
+authOverlay.addEventListener("click", e => { if (e.target === authOverlay) closeAuth(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeAuth(); });
+document.getElementById("authForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const phone = document.getElementById("authPhone").value.trim();
+  const password = document.getElementById("authPassword").value;
+  const msg = document.getElementById("authMessage");
+  msg.style.color = "#b00020";
+  msg.textContent = "Please wait…";
+  try {
+    const response = await fetch("/api/auth/" + authMode, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      credentials: "same-origin",
+      body: JSON.stringify({phone, password})
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || "Unable to sign in.");
+    msg.style.color = "#087b43";
+    msg.textContent = authMode === "register" ? "Account created successfully!" : "Login successful!";
+    setTimeout(closeAuth, 900);
+  } catch (err) {
+    msg.textContent = err.message || "Could not connect. Make sure the Fashion Flip server is running.";
+  }
+});
+async function fashionFlipLogout() {
+  await fetch("/api/auth/logout", {method:"POST", credentials:"same-origin"});
+}
+</script>
+
+</body>
+</html>
